@@ -178,6 +178,21 @@ async function predictWebcam() {
         window.requestAnimationFrame(predictWebcam);
     }
 }
+const displayNameMapping = {
+    browDownLeft: '左眉下垂',
+    browDownRight: '右眉下垂',
+    eyeBlinkLeft: '左眼閉合',
+    eyeBlinkRight: '右眼閉合',
+    eyeLookDownLeft: '左眼看下',
+    eyeLookDownRight: '右眼看下',
+    eyeSquintLeft: '左眼眯眼',
+    eyeSquintRight: '右眼眯眼',
+    mouthSmileLeft: '左嘴角微笑',
+    mouthSmileRight: '右嘴角微笑',
+    mouthUpperUpLeft: '左嘴角上揚',
+    mouthUpperUpRight: '右嘴角上揚',
+  };
+
 function drawBlendShapes(el, blendShapes) {
     if (!blendShapes.length) {
         return;
@@ -187,7 +202,7 @@ function drawBlendShapes(el, blendShapes) {
     blendShapes[0].categories.map((shape) => {
         htmlMaker += `
       <li class="blend-shapes-item">
-        <span class="blend-shapes-label">${shape.displayName || shape.categoryName}</span>
+        <span class="blend-shapes-label">${ displayNameMapping[shape.categoryName] || shape.categoryName }</span>
         <span class="blend-shapes-value" style="width: calc(${+shape.score * 100}% - 120px)">${(+shape.score).toFixed(4)}</span>
       </li>
     `;
